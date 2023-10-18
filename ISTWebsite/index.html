@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <style>  
+    body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0px;
+  background-color: rgb(9, 8, 41);
+  opacity: 0;
+    transition: opacity 2s;
+}
+
+.rubik-font {
+  font-family: "Rubik", sans-serif;
+}
+
+main {
+  background-position: center 0%;
+  background-color: white;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  z-index: 2;
+  transition: transform 700ms cubic-bezier(.13,.53,.38,.97);
+    overflow-y: auto;
+}
+
+
+body[data-nav="true"] > main {
+  transform: translateY(-63%);
+}
+
+nav {
+  height: 80vh;
+  width: 200%;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  z-index: 1;
+  overflow: hidden;
+ margin-left:-100%;
+}
+
+#LeftMover {
+  float:left;  
+  width:110%;
+  height:100%;
+  transition: width 111114s ;
+  margin-left:-60%;
+  top:0;
+  background-color: orange;
+  animation-play-state: running;
+
+}
+
+/* adjust width so pointer is only hovering if actually to left of circle */
+
+
+#RightMover {
+  position:absolute;
+  right:0;
+  top:0;
+  height:100%;
+  width:3%;
+
+  z-index: 10;
+}
+#RightleftMover {
+  position:absolute;
+  right:48%;
+  top:0;
+  height:100%;
+  width:10%;
+  z-index: 10;
+}
+
+
+
+#RightMover:hover ~ #nav-links{
+ 
+  transition: transform 700ms cubic-bezier(.33,.53,.38,.67); 
+  transition-timing-function: ease;
+
+}
+
+
+#RightMover:hover ~ #LeftMover{
+  width: 80%;
+  transition: width 3s;
+  transition-timing-function: ease;
+}
+#RightleftMover:hover ~ #LeftMover{
+  width: 109.9%;
+  transition: width 3s;
+  transition-timing-function: ease;
+}
+
+#RightMover:hover {
+  width: 20%;
+  transition: width 8s;
+ 
+}
+
+
+#nav-links {  
+  float:center;
+  display:flex;
+  gap: clamp(1rem, 2vw, 2rem);
+  margin-top: clamp(2rem, 2vw, 3rem);
+  padding: 0rem clamp(1rem, 2vw, 2rem);
+  transform: translateY(80%) scale(0.9);
+  transition: transform 700ms cubic-bezier(.33,.53,.38,.67); 
+  transition-timing-function: ease;
+}
+
+body[data-nav="true"] > nav > #nav-links {
+  transform: translateY(-25%) scale(1);
+}
+
+#nav-links > .nav-link {
+  text-decoration: none;
+  transition-timing-function: ease;
+  transition-duration: 400ms;
+}
+
+#nav-links > .nav-link > .nav-link-label {
+  color: white;
+  font-size: 1.25rem;
+  margin: 0rem;
+  margin-top: 15.75rem;
+  text-transform: uppercase;
+}
+
+#nav-links > .nav-link > .nav-link-image {
+  width: max(20vw, 400px);
+  aspect-ratio: 1.8 / 1;
+  border-radius: 0.5rem;
+  margin-top: 0.75rem;
+  object-fit: cover;
+  cursor: wait;
+
+ 
+}
+#nav-links :hover{
+  transform: scale(1.04);
+  box-shadow: 100px,100px;
+  transition-timing-function: ease;
+  transition-duration: 400ms;
+}
+
+#nav-toggle {
+  height: 5rem;
+  width: 5rem;
+  position: fixed;
+  z-index: 3;
+  left: 50%;
+  bottom: 3rem;
+  transform: translateX(-50%);
+  background-color: rgb(121, 150, 245);
+  border: none;
+  border-radius: 5rem;
+  outline: none;
+  box-shadow: 0rem 0rem 4rem rgba(0 0 0 / 35%);
+  cursor: pointer;
+  transition: transform, background-color;
+  transition-timing-function: ease;
+  transition-duration: 400ms;
+}
+
+#nav-toggle:hover {
+  transform: translateX(-50%) scale(1.04);
+ 
+}
+
+#nav-toggle:active {
+  transform: translateX(-50%) scale(0.96);
+}
+
+body[data-nav="true"] > #nav-toggle {
+  background-color: rgb(14, 52, 68);
+}
+
+body:not([data-nav="true"]) > #nav-toggle:hover > .open {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#nav-toggle > b {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  color: rgb(255, 255, 255);
+  font-size: 1.75rem;
+  opacity: 0;
+  transition: transform, opacity;
+  transition-timing-function: ease;
+  transition-duration: 400ms;
+  
+}
+#indent {
+    width: 100%;
+                height: 100%;
+    overflow-y: auto;
+    position:absolute;
+    
+}
+#indent::-webkit-scrollbar {
+  display:none;
+}
+
+body[data-nav="true"] > #nav-toggle > .close {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+
+
+
+        .yellow {
+  background-color: rgb(249, 96, 158);
+  background-image:url('https://pennanthil-h.schools.nsw.gov.au/content/dam/doe/sws/schools/p/pennanthil-h/image/fDSC_3166.jpg.thumb.1280.1280.jpg'); 
+  object-fit: cover;
+  width: max(100%, 100%);
+  aspect-ratio: 16 / 9;
+ 
+}
+
+.red {
+  transition: transform,opacity;
+  transition-timing-function: ease-out;
+  transition-duration: 111111111400s;
+  transform: translate(0%, 10%) scale(0.9);
+  opacity:0;
+
+}
+.red:hover{
+
+  
+
+transition: transform,opacity;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.7s;
+  transform: translate(5%, -5%) scale(1.1);
+  opacity:1;
+}
+
+
+.blue {
+  
+  transition: transform,opacity;
+  transition-timing-function: ease-out;
+  transition-duration: 111111111400s;
+  transform: translate(0%, 10%) scale(0.9);
+  opacity:0;
+}
+.blue:hover{
+  transition: transform,opacity;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.7s;
+  transform: translate(-5%, -5%) scale(1.1);
+  opacity:1;
+}
+.green {
+  background-color: lightgreen; 
+  transition: opacity 120000000s ease-out;
+  opacity:0;
+}
+.green:hover{
+  transition: opacity 0.5s ease-in;
+opacity:1;
+}
+h1 {
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  color: white;
+  font-size: 4rem;
+  text-align: center;
+}
+section {
+  height: 100vh;
+}
+
+
+
+    </style>
+</head>
+<body onload="document.body.style.opacity='1'">
+
+  <main>
+<div id="indent">
+
+  <section class="yellow" ><h1>I'm Bricking</h1>
+  </section>
+  <section class="tag red" ><h1>Schumg</h1>
+    <img  src="Assets/RedBubble.png"style="margin-left:20px;"></img></section>
+  <section class="tag blue" ><h1>obar</h1> <img style="margin-right:20px; float:right;"src="Assets/BlueBubble.png"></img></section>
+  <section class="tag green" ><h1>gr</h1></section>
+
+
+</div>
+
+    </main>
+
+<nav>
+  <div id="RightMover"> </div>
+  <div id="RightleftMover"> </div>
+  <div id="LeftMover"></div>
+  <div id="nav-links">
+    <a class="nav-link" href="">
+      <h2 class="nav-link-label rubik-font">Home</h2>
+      <img class="nav-link-image" src="https://pennanthil-h.schools.nsw.gov.au/content/dam/doe/sws/schools/p/pennanthil-h/localcontent/socialscience6.png.thumb.1280.1280.png" />
+    </a>
+    <a class="nav-link" href="HTMLWorkAtPenno.html">
+      <h2 class="nav-link-label rubik-font">Work</h2>
+      <img class="nav-link-image" src="https://pennanthil-h.schools.nsw.gov.au/content/dam/doe/sws/schools/p/pennanthil-h/image/fDSC_3166.jpg.thumb.1280.1280.jpg" />
+    </a>
+    <a class="nav-link" href="#">
+      <h2 class="nav-link-label rubik-font">About</h2>
+      <img class="nav-link-image" src="https://pennanthil-h.schools.nsw.gov.au/content/dam/doe/sws/schools/p/pennanthil-h/image/fDSC_3014_cropped.jpg.thumb.1280.1280.jpg" />
+    </a>
+    <a class="nav-link" href="#">
+      <h2 class="nav-link-label rubik-font">Contact</h2>
+      <img class="nav-link-image" src="https://pennanthil-h.schools.nsw.gov.au/content/dam/doe/sws/schools/p/pennanthil-h/image/fDSC_3166.jpg.thumb.1280.1280.jpg" />
+    </a>
+    <a class="nav-link" href="#">
+      <h2 class="nav-link-label rubik-font">Join Us</h2>
+      <img class="nav-link-image" src="https://pennanthil-h.schools.nsw.gov.au/content/dam/doe/sws/schools/p/pennanthil-h/image/fDSC_3166.jpg.thumb.1280.1280.jpg" />
+    </a>
+  </div>
+</div>
+</nav>
+
+<button id="nav-toggle" type="button" onclick="toggleNav()">
+  <b class="open fa-light fa-bars-staggered">☰</b>
+  <b class="close fa-light fa-xmark-large">X</b>
+</button>
+
+
+<script>
+const toggleNav = () => {
+  document.body.dataset.nav = document.body.dataset.nav === "true" ? "false" : "true";
+}
+</script>
+<!--Testicles-->
+</body>
+</html>
