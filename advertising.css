@@ -1,0 +1,78 @@
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+.font {
+font-family: "Playfair display", serif;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+    background-color: #5d739e;
+  overflow-x: hidden;
+  transition: 0.7s;
+  padding-top: 60px;
+font-family: "Playfair display", serif;
+}
+
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #ffffff;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+font-size: 20px;
+cursor: pointer;
+background-color:  #677ba1;
+ font-family: "Playfair display", serif;
+color: white;	
+border: none;
+padding: 10px;
+}
+
+.openbtn:hover {
+background-color: #3a3f5c;
+}
+
+#grease {
+transition: margin-left .5s;
+  margin-left: 41px;
+padding-left: 25px;
+font-family: "Playfair display", serif;
+}
+#main {
+transition: margin-left .5s;
+font-family: "Playfair display", serif;
+}
+
+
+@media screen and (max-height: 450px) {
+.sidebar {padding-top: 15px;}
+.sidebar a {font-size: 18px;}
+}
+

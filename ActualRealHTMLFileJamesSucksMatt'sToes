@@ -1,0 +1,44 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="advertising.css">
+</head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pennant Hills High School</title>
+  
+  </style>
+</head>
+<body>
+  <header>
+    <button class="openbtn" onclick="openNav()"><b id="main">☰</b></button> 
+    <h1>Pennant Hills High School</h1>
+
+  </header>
+  <div  class="sidebar" id="mySidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+
+  </div>
+  
+  <script>
+    function openNav() {
+     document.getElementById("mySidebar").style.width = "250px";
+      
+    
+     
+    }
+    
+    function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    
+    
+    }
+    </script>
+  
+</body>
+</html>
+
+Testing
